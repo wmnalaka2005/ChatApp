@@ -1,4 +1,4 @@
-# 📱 React Native Chat App
+# 📱 React Native ChatApp (Frontend)
 
 A simple **cross-platform chat application** built with **React Native** (frontend) and **Java + Hibernate + WebSockets** (backend).  
 This app provides real-time messaging, authentication, and a smooth chat experience on both Android and iOS.  
