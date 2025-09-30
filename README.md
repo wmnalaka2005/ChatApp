@@ -18,7 +18,8 @@ This app provides real-time messaging, authentication, and a smooth chat experie
 ## 🛠️ Tech Stack
 ### Frontend
 - React Native  
-- Expo / Expo Go  
+- Expo / Expo Go
+- dotenv for environment variables 
 
 ### Backend
 - Java  
