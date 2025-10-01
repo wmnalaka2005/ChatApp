@@ -43,8 +43,8 @@ export default function SingleChatScreen({
   const { chatId, friendName, lastSeenTime, profileImage } = route.params;
 
   const singleChat = useSingleChat(chatId); //ChatId == FriendId
-  const messages =singleChat.messages;
-  const friend =singleChat.friend;
+  const messages = singleChat.messages;
+  const friend = singleChat.friend;
   const sendMessage = useSendChat();
 
   const [input, setInput] = useState("");
@@ -55,18 +55,36 @@ export default function SingleChatScreen({
       title: "",
       headerLeft: () => (
         <View className="flex-row items-center gap-2">
-          <TouchableOpacity className="justify-center items-center" onPress={()=>{navigation.goBack();}}>
-            <Ionicons name="arrow-back-sharp" size={24} color="black"/>
+          <TouchableOpacity
+            className="justify-center items-center"
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Ionicons name="arrow-back-sharp" size={24} color="black" />
           </TouchableOpacity>
-          <Image
-            source={{ uri: profileImage }}
-            className="h-14 w-14 rounded-full border-2 border-gray-400 p-1"
-          />
+
+          <TouchableOpacity className="h-14 w-14 rounded-full border-1 border-gray-300 justify-center items-center">
+           
+              <Image
+                source={{ uri:profileImage }}
+                className="h-14 w-14 rounded-full"
+              />
+           
+          </TouchableOpacity>
+
 
           <View className="space-y-2">
-            <Text className="font-bold text-2xl">{friend?.firstName.toString()} {friend?.lastName.toString()}</Text>
+            <Text className="font-bold text-2xl">
+              {friend?friend.firstName+" "+friend.lastName:friendName}
+              {/* {friend?.firstName.toString()} {friend?.lastName.toString()} */}
+            </Text>
             <Text className="italic text-xs font-bold text-gray-500">
-              {friend?.status === "ONLINE"?"Online":`Last seen ${formatChatTime(friend?.updatedAt?.toString()?? "")}`}
+              {friend?.status === "ONLINE"
+                ? "Online"
+                : `Last seen ${formatChatTime(
+                    friend?.updatedAt?.toString() ?? ""
+                  )}`}
             </Text>
           </View>
         </View>
@@ -78,7 +96,7 @@ export default function SingleChatScreen({
         </TouchableOpacity>
       ),
     });
-  }, [navigation,friend]);
+  }, [navigation, friend]);
 
   const renderItem = ({ item }: { item: Chat }) => {
     const isMe = item.from.id !== chatId;
@@ -128,7 +146,7 @@ export default function SingleChatScreen({
       className="flex-1 bg-white"
       edges={["right", "bottom", "left"]}
     >
-      <StatusBar hidden={false} />
+      <StatusBar hidden={false} translucent={true}/>
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "android" ? "padding" : "height"}

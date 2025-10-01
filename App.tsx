@@ -13,6 +13,7 @@ import { AlertNotificationRoot } from "react-native-alert-notification";
 import HomeTabs from "./src/screen/HomeTabs";
 import SingleChatScreen from "./src/screen/SingleChatScreen";
 import { WebSocketProvider } from "./src/socket/WebSocketProvider";
+import NewChatScreen from "./src/screen/NewChatScreen";
 
 export type RootStack = {
   SplashScreen: undefined;
@@ -29,6 +30,7 @@ export type RootStack = {
     lastSeenTime: string;
     profileImage: string;
   };
+  NewChatScreen:undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStack>();
@@ -43,7 +45,7 @@ export default function App() {
             <NavigationContainer>
               <Stack.Navigator
                 initialRouteName="HomeScreen"
-                screenOptions={{ animation: "fade" }}
+                screenOptions={{ animation: "flip" }}
               >
                 <Stack.Screen
                   name="SplashScreen"
@@ -62,8 +64,7 @@ export default function App() {
                   component={SignInScreen}
                   options={{ headerShown: false }}
                 />
-                <Stack.Screen name="SettingScreen" component={SettingsScreen} options={{ headerShown: false }}/>
-                <Stack.Screen name="ProfileScreen" component={ProfileScreen}  options={{ headerShown: false }}/>
+
                 <Stack.Screen
                   name="HomeScreen"
                   component={HomeTabs}
@@ -73,6 +74,18 @@ export default function App() {
                   name="SingleChatScreen"
                   component={SingleChatScreen}
                 />
+
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen}  options={{ headerShown: false }}/>
+
+                <Stack.Screen name="SettingScreen" component={SettingsScreen} options={{ headerShown: false }}/>
+               
+                <Stack.Screen 
+                name="NewChatScreen" 
+                component={NewChatScreen} 
+                
+                
+                />
+
               </Stack.Navigator>
             </NavigationContainer>
           </UserRegistrationProvider>
